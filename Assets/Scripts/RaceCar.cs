@@ -1,31 +1,28 @@
 using UnityEngine;
 
+[RequireComponent(typeof (RaceCarChassis))]
 public class RaceCar : MonoBehaviour
 {
-    [SerializeField] private WheelCollider[] wheelColliders;
-    [SerializeField] private Transform[] wheelMeshs;
-    [SerializeField] private float motorTorque;
-    [SerializeField] private float brakeTorque;
-    [SerializeField] private float steerAngle;
+    [SerializeField] private float maxMotorTorque;
+    [SerializeField] private float maxBrakeTorque;
+    [SerializeField] private float maxSteerAngle;
+
+    private RaceCarChassis chassis;
+
+    // DEBUG
+    public float ThrottleControl;
+    public float SteerControl;
+    public float BrakeControl;
+
+    private void Start()
+    {
+        chassis = GetComponent<RaceCarChassis>();
+    }
 
     private void Update()
     {
-        for (int i = 0; i < wheelColliders.Length; i++)
-        {
-            wheelColliders[i].motorTorque = Input.GetAxis("Vertical") * motorTorque;
-            wheelColliders[i].brakeTorque = Input.GetAxis("Jump") * brakeTorque;
-
-            Vector3 wheelPosition;
-            Quaternion wheelRotation;
-
-            wheelColliders[i].GetWorldPose(out wheelPosition, out wheelRotation);
-
-            wheelMeshs[i].position = wheelPosition;
-            wheelMeshs[i].rotation = wheelRotation;
-        }
-
-        wheelColliders[0].steerAngle = Input.GetAxis("Horizontal") * steerAngle;
-        wheelColliders[1].steerAngle = Input.GetAxis("Horizontal") * steerAngle;
-
+        chassis.MotorTorque = maxMotorTorque * ThrottleControl;
+        chassis.SteerAngle = maxSteerAngle * SteerControl;
+        chassis.BrakeTorque = maxBrakeTorque * BrakeControl;
     }
 }
