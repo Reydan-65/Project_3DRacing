@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [System.Serializable]
@@ -30,6 +29,7 @@ public class WheelAxle
 
     public bool IsMotor => isMotor;
     public bool IsSteer => isSteer;
+
     // Public API
 
     public void Update()
@@ -42,7 +42,6 @@ public class WheelAxle
 
         SyncMeshTransform();
     }
-
 
     public void ApplySteerAngle(float steerAngle, float wheelBaseLength)
     {
@@ -80,6 +79,26 @@ public class WheelAxle
     {
         leftWheelCollider.brakeTorque = brakeTorque;
         rightWheelCollider.brakeTorque = brakeTorque;
+    }
+
+    public float GetAverageRPM()
+    {
+        return (leftWheelCollider.rpm +  rightWheelCollider.rpm) * 0.5f;
+    }
+
+    public float GetRadius()
+    {
+        return leftWheelCollider.radius;
+    }
+
+    public bool WheelIsGrounded()
+    {
+        if (leftWheelCollider.isGrounded || rightWheelCollider.isGrounded)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     // Private

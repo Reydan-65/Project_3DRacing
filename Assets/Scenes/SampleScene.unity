@@ -1519,6 +1519,74 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   raceCar: {fileID: 1571451002}
+  chassis: {fileID: 1571451003}
+  brakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.10666336
+    - serializedVersion: 3
+      time: 0.44684952
+      value: 0.88508207
+      inSlope: -0.92862415
+      outSlope: -0.92862415
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.6000746
+      outSlope: -1.6000746
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  steerCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0008201599
+      value: 1
+      inSlope: -0.044434182
+      outSlope: -0.044434182
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.07085076
+    - serializedVersion: 3
+      time: 0.34729546
+      value: 0.85398495
+      inSlope: -1.388634
+      outSlope: -1.388634
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  autoBrakeStrength: 0.4
 --- !u!4 &1527809291
 Transform:
   m_ObjectHideFlags: 0
@@ -1528,11 +1596,11 @@ Transform:
   m_GameObject: {fileID: 1527809289}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: -0.4}
+  m_LocalPosition: {x: 0, y: 2.54, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1571451001}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1571450999
 GameObject:
@@ -1597,7 +1665,6 @@ Transform:
   - {fileID: 1773584210}
   - {fileID: 963194228}
   - {fileID: 1887634908}
-  - {fileID: 1527809291}
   - {fileID: 228516322}
   - {fileID: 1447391146}
   - {fileID: 819328628}
@@ -1623,15 +1690,15 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -3.6991608
-      outSlope: -3.6991608
+      inSlope: -3.0185494
+      outSlope: -3.0185494
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.09137954
-      value: 0.6619724
+      time: 0.09955825
+      value: 0.6994785
       inSlope: -0.7454542
       outSlope: -0.7454542
       tangentMode: 0
@@ -1641,8 +1708,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 0.1
-      inSlope: -0.6184897
-      outSlope: -0.6184897
+      inSlope: -0.6657604
+      outSlope: -0.6657604
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -1652,6 +1719,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   maxMotorTorque: 16000
   maxSpeed: 320
+  linearVelocity: 0
+  handBrakeDrag: 2
   ThrottleControl: 0
   SteerControl: 0
   BrakeControl: 0
@@ -1679,7 +1748,7 @@ MonoBehaviour:
     additionalWheelDownForce: 100
     baseForwardStiffnes: 1.5
     stabilityForwardFactor: 1
-    baseSidewaysStiffnes: 1.5
+    baseSidewaysStiffnes: 1.75
     stabilitySidewaysFactor: 1
   - leftWheelCollider: {fileID: 1484678421}
     rightWheelCollider: {fileID: 1163324338}
@@ -1692,7 +1761,7 @@ MonoBehaviour:
     additionalWheelDownForce: 100
     baseForwardStiffnes: 1.5
     stabilityForwardFactor: 1
-    baseSidewaysStiffnes: 1.5
+    baseSidewaysStiffnes: 1.75
     stabilitySidewaysFactor: 1
   wheelBaseLength: 2.973514
   centerOfMass: {fileID: 228516322}
@@ -2091,3 +2160,4 @@ SceneRoots:
   - {fileID: 846740698}
   - {fileID: 2096120010}
   - {fileID: 1823499082}
+  - {fileID: 1527809291}

@@ -10,10 +10,18 @@ public class RaceCar : MonoBehaviour
 
     [SerializeField] private float maxMotorTorque;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float linearVelocity; // DEBUG
+
+    [SerializeField] private float handBrakeDrag;
 
     private RaceCarChassis chassis;
+    private float originalDrag;
 
     public float LinearVelocity => chassis.LinearVelocity;
+    public float WheelSpeed => chassis.GetWheelSpeed();
+    public float MaxSpeed => maxSpeed;
+    public float OriginalDrag => originalDrag;
+    public float HandBrakeDrag => handBrakeDrag;
 
     // DEBUG
     public float ThrottleControl;
@@ -23,10 +31,13 @@ public class RaceCar : MonoBehaviour
     private void Start()
     {
         chassis = GetComponent<RaceCarChassis>();
+        originalDrag = chassis._Rigidbody.drag;
     }
 
     private void Update()
     {
+        linearVelocity = LinearVelocity; // DEBUG
+
         float engineTorque = engineTorqueCurve.Evaluate(LinearVelocity / maxSpeed) * maxMotorTorque;
 
         if (LinearVelocity >= maxSpeed)
