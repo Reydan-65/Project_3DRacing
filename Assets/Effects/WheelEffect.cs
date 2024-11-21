@@ -30,7 +30,7 @@ public class WheelEffect : MonoBehaviour
 
             if (wheels[i].isGrounded == true)
             {
-                if (wheelHit.forwardSlip > Mathf.Abs(forwardSlipLimit) || wheelHit.sidewaysSlip > Mathf.Abs(sidewaySlipLimit))
+                if (wheelHit.forwardSlip > forwardSlipLimit || wheelHit.sidewaysSlip > sidewaySlipLimit)
                 {
                     if (skidTrails[i] == null)
                         skidTrails[i] = Instantiate(skidPrefab).transform;
@@ -40,7 +40,8 @@ public class WheelEffect : MonoBehaviour
 
                     if (skidTrails[i] != null)
                     {
-                        Vector3 pointPos = new Vector3(wheelHit.point.x, wheelHit.point.y + 0.01f, wheelHit.point.z);
+                        Vector3 pointPos = wheels[i].transform.position - wheelHit.normal * wheels[i].radius; /*new Vector3(wheelHit.point.x, wheelHit.point.y + 0.01f, wheelHit.point.z);*/
+                        
                         skidTrails[i].position = pointPos;
                         skidTrails[i].forward = -wheelHit.normal;
 
@@ -49,7 +50,6 @@ public class WheelEffect : MonoBehaviour
                     }
 
                     isSlip = true;
-
                     continue;
                 }
             }

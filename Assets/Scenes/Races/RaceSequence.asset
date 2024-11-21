@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdce1456d7354cc4bb38a8772ef9f904, type: 3}
+  m_Name: RaceSequence
+  m_EditorClassIdentifier: 
+  RaceInfos:
+  - {fileID: 11400000, guid: 8499ddeb4c667364aad9b79f374f271f, type: 2}
+  - {fileID: 11400000, guid: 9272b7a62131fd24b88b99a7986267b6, type: 2}
+  - {fileID: 11400000, guid: 41be48365eab92c4392a215434df1e42, type: 2}
+  - {fileID: 11400000, guid: 15321b76f0216c946910eb2ddde57b14, type: 2}
+  - {fileID: 11400000, guid: d65411da388654049963c7c10ab7e2f8, type: 2}
+  - {fileID: 11400000, guid: dacf9a68ea3803140a49a7cd47adc0d6, type: 2}

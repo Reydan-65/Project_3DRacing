@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIRaceResult : MonoBehaviour, IDependency<RaceResultTime>, IDependency<RaceTimeTracker>
 {
@@ -15,6 +16,8 @@ public class UIRaceResult : MonoBehaviour, IDependency<RaceResultTime>, IDepende
     [SerializeField] private TextMeshProUGUI currentNameText;
     [SerializeField] private TextMeshProUGUI currentTimeText;
 
+    [SerializeField] private Image doneImage;
+
     private RaceResultTime raceResultTime;
     public void Construct(RaceResultTime obj) => raceResultTime = obj;
 
@@ -23,6 +26,7 @@ public class UIRaceResult : MonoBehaviour, IDependency<RaceResultTime>, IDepende
 
     private void Start()
     {
+        doneImage.gameObject.SetActive(false);
         raceResultTime.ResultsUpdated += OnResultUpdated;
         recordList.SetActive(false);
     }
@@ -73,6 +77,9 @@ public class UIRaceResult : MonoBehaviour, IDependency<RaceResultTime>, IDepende
                 currentTimeText.color = Color.red;
             }
         }
+
+        if (raceResultTime.GetAbsoluteRecord() < raceResultTime.GoldTime)
+            doneImage.gameObject.SetActive(true);
 
         currentNameText.text = CurrentName + ":";
         currentTimeText.text = StringTime.SecondToTimeString(currentTime);

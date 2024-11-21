@@ -21,7 +21,7 @@ public class RaceStateTracker : MonoBehaviour, IDependency<TrackPointCircuit>
     [SerializeField] private Timer countDownTimer;
 
     private TrackPointCircuit trackPointCircuit;
-    public void Construct(TrackPointCircuit trackPointCircuit) => this.trackPointCircuit = trackPointCircuit;
+    public void Construct(TrackPointCircuit obj) => trackPointCircuit = obj;
 
     public int LapsToComplete => lapsToComplete;
     public Timer CountDownTimer => countDownTimer;
@@ -30,10 +30,15 @@ public class RaceStateTracker : MonoBehaviour, IDependency<TrackPointCircuit>
     public RaceState RaceState => raceState;
     private void StartState(RaceState raceState) => this.raceState = raceState;
 
+    private SceneTransitionManager sceneTransitionManager;
+
     private void Start()
     {
-        StartState(RaceState.Preparation);
+        sceneTransitionManager = FindAnyObjectByType<SceneTransitionManager>();
+        sceneTransitionManager.PlayTransitionAnimation("StartScene");
 
+        StartState(RaceState.Preparation);
+        
         countDownTimer.enabled = false;
         countDownTimer.Finished += OnCountDownTimerFinished;
 

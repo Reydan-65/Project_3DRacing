@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIRaceButton : UISelectableButton, IScriptableObjectProperty
@@ -10,10 +9,27 @@ public class UIRaceButton : UISelectableButton, IScriptableObjectProperty
 
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI title;
+    [SerializeField] private Image doneImage;
+    [SerializeField] private Image lockerImage;
+
+    public Image DoneImage { get { return doneImage; } }
+
+    private SceneTransitionManager sceneTransitionManager;
+
+    public bool IsComplete
+    {
+        get
+        {
+            return gameObject.activeSelf && doneImage.enabled;
+        }
+    }
 
     private void Start()
     {
+        sceneTransitionManager = FindAnyObjectByType<SceneTransitionManager>();
         ApplyProperty(raceInfo);
+
+        if (gameObject.transform.GetSiblingIndex() == 0) SetButtonActive();
     }
 
     public override void OnPointerClick(PointerEventData eventData)
@@ -22,7 +38,8 @@ public class UIRaceButton : UISelectableButton, IScriptableObjectProperty
 
         if (raceInfo == null) return;
 
-        SceneManager.LoadScene(raceInfo.SceneName);
+        if (raceInfo.SceneName != null && Interactable == true)
+            sceneTransitionManager.LoadScene(raceInfo.SceneName);
     }
 
     public void ApplyProperty(ScriptableObject property)
@@ -34,5 +51,17 @@ public class UIRaceButton : UISelectableButton, IScriptableObjectProperty
 
         icon.sprite = raceInfo.Icon;
         title.text = raceInfo.Title;
+    }
+
+    public void SetButtonActive()
+    {
+        Interactable = true;
+        lockerImage.gameObject.SetActive(false);
+        title.gameObject.SetActive(true);
+    }
+
+    public void SetDone()
+    {
+        doneImage.enabled = true;
     }
 }

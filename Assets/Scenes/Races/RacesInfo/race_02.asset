@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 105d35d6583a69e418a1bad2285418ba, type: 3}
-  m_Name: TestRace_2
+  m_Name: race_02
   m_EditorClassIdentifier: 
-  sceneName: test_race_2
-  icon: {fileID: 21300000, guid: 9d9debebc981004488d659594070c13e, type: 3}
-  title: Tutotial 2
+  sceneName: race_02
+  icon: {fileID: 21300000, guid: 7a9df40a3985e2d49b8f58cf5b8b5d7a, type: 3}
+  title: Circuit 02
